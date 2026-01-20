@@ -37,7 +37,7 @@ CREATE TABLE Clients (
    County   VARCHAR(20),
    TelNo    VARCHAR(20),
    Email    VARCHAR(20)
-);  -- 🔹 removed trailing comma
+);  
 
 CREATE TABLE Purchase (
    PurchaseId      VARCHAR(20) PRIMARY KEY,
@@ -85,6 +85,7 @@ VALUES
 ('112', 'Card','Home', 1221, '111', 'PER1'),
 ('113', 'Cash','Theatre', 1222, '110', 'PER2');
 
+#	The total sale value of each production. 
 SELECT 
     p.Pid,
     SUM(pr.TotalAmount) AS Total_Sales
@@ -93,6 +94,7 @@ JOIN Performances pe ON pr.PerId = pe.PerId
 JOIN Productions p   ON pe.Pid = p.Pid
 GROUP BY p.Pid;
 
+#  Monthly sale value of each theatre.
 SELECT 
     SUBSTRING(aa.PDate, 4, 4) AS Month,
     cc.CName AS TheatreName,
@@ -104,6 +106,7 @@ GROUP BY
     SUBSTRING(aa.PDate, 4, 4),
     cc.CName;
 
+#	The theatre name and the names of clients who have the highest spending in that theatre.
 SELECT 
     c.CName AS TheatreName,
     cl.Names AS ClientName,
